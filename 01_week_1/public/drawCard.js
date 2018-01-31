@@ -166,7 +166,7 @@ function ShowInstruction() {
     // text(" Please Choose One Card Instinctually", width/2, height/4);
   }
 
-  if (resultsAreReady && playerDidChoose) {
+  if (playerNameSetted && resultsAreReady && playerDidChoose) {
     fill(0);
     textAlign(LEFT);
     textSize(32);
