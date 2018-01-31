@@ -6,7 +6,7 @@ let results = [
 ];
 
 // Create server
-let port = process.env.PORT || 8120;
+let port = process.env.PORT || 8000;
 let express = require('express');
 let app = express();
 let server = require('http').createServer(app).listen(port, function() {
