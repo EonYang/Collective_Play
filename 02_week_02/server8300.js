@@ -22,7 +22,6 @@ dogs = {
 // create basic objects
 let port = process.env.PORT || 8300;
 let express = require('express');
-let ua  = require('express-mobile-redirect');
 let app = express();
 let server = require('http').createServer(app).listen(port, function() {
   console.log('server is listening at port: ' + port);

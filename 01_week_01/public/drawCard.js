@@ -91,12 +91,12 @@ class Card {
         this.stage = 3;
       }
     }
-    if (this.stage == 3 && this.sub >=0) {
+    if (this.stage == 3 && this.sub >= 0) {
       this.sub -= this.w / 10.1;
       stroke(0);
       fill(255);
       rect(this.x, this.y, this.w - this.sub, this.h);
-      if (this.sub <= 0){
+      if (this.sub <= 0) {
         this.stage = 4;
       }
     }
@@ -170,13 +170,13 @@ function ShowInstruction() {
     fill(0);
     textAlign(LEFT);
     textSize(32);
-    text(resultTitile, 20, height / 8,);
+    text(resultTitile, 20, height / 8, );
     textSize(14);
-    text(textResult, 20, height / 5,);
+    text(textResult, 20, height / 5, );
     textSize(24);
-    text("When you see some touch question in a examnation, \n I guess you will make the same choice as today you do.\n"
-    + "Are you curious about what will other people choose? \n"
-    + "Please share this page to them, \n so the data would be more interesting." , 20, height / 1.8,);
+    text("When you see some touch question in a examnation, \n I guess you will make the same choice as today you do.\n" +
+      "Are you curious about what will other people choose? \n" +
+      "Please share this page to them, \n so the data would be more interesting.", 20, height / 1.8, );
 
     // let finalResult = createP(textResult);
     // finalResult.style('width', width - 80)
@@ -187,38 +187,41 @@ function ShowInstruction() {
 
 function ShowResults(localResults) {
 
-  let percents = [];
-  let totalPeople = 0;
+  if (playerDidChoose && playerNameSetted) {
 
-  for (var i = 0; i < 4; i++) {
-    totalPeople += localResults[i].length;
+    let percents = [];
+    let totalPeople = 0;
+
+    for (var i = 0; i < 4; i++) {
+      totalPeople += localResults[i].length;
+    }
+    console.log("totalPeople  ", totalPeople);
+
+    for (var i = 0; i < 4; i++) {
+      percents.push(
+        str(floor(localResults[i].length * 10000 / totalPeople) / 100) + "%"
+      )
+    }
+    console.log("percents: ", percents);
+
+    resultTitile = str(localResults[choice].length) + " people(" + str(percents[choice]) + " ) did the same choice with you.";
+    textResult = percents[0] + " of people like choosing the first item, they are:\n  " + str(localResults[0]) + "\n \n " +
+      percents[1] + " of people like choosing the 2nd item, they are:\n " + str(localResults[1]) + "\n \n " +
+      percents[2] + " of people like choosing the 3rd item, they are: \n " + str(localResults[2]) + "\n \n " +
+      percents[3] + " of people like choosing the 4th item, they are: \n " + str(localResults[3]) + "\n \n ";
+
+    resultsAreReady = 1;
   }
-  console.log("totalPeople  ", totalPeople);
-
-  for (var i = 0; i < 4; i++) {
-    percents.push(
-      str(floor(localResults[i].length * 10000 / totalPeople) / 100) + "%"
-    )
-  }
-  console.log("percents: ", percents);
-
-  resultTitile = str(localResults[choice].length) + " people("+str(percents[choice]) +" ) did the same choice with you." ;
-  textResult = percents[0] + " of people like choosing the first item, they are:\n  " + str(localResults[0]) + "\n \n " +
-    percents[1] + " of people like choosing the 2nd item, they are:\n " + str(localResults[1]) + "\n \n " +
-    percents[2] + " of people like choosing the 3rd item, they are: \n " + str(localResults[2]) + "\n \n " +
-    percents[3] + " of people like choosing the 4th item, they are: \n " + str(localResults[3]) + "\n \n ";
-
-  resultsAreReady = 1;
 }
 
 let timeClick;
 
-function FlipChoosenCard (choice){
+function FlipChoosenCard(choice) {
   timeClick = frameCount;
   cards[choice].stage = 2;
 }
 
-function FlipOtherCards (){
+function FlipOtherCards() {
   for (var i = 0; i < cards.length; i++) {
     if (cards[i].stage == 1) {
       cards[i].stage = 2;
