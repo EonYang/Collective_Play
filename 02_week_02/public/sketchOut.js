@@ -66,6 +66,16 @@ function draw() {
   translate(width / 2, height / 2);
   image(bgImg, 0, 0, height * 1.77, height);
   pop();
+  push();
+  translate(0,0);
+  noStroke();
+  fill(0,0,0,0.5);
+  rect(0,0,660, 60);
+  fill(255);
+  textSize(17);
+  textAlign(LEFT);
+  text('Visit this page on your phone to join', 20, 20);
+  pop();
   // console.log(localDogs);
   for (var prop in localDogs) {
     localDogs[prop].show();
