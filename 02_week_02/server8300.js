@@ -22,6 +22,7 @@ dogs = {
 // create basic objects
 let port = process.env.PORT || 8300;
 let express = require('express');
+let ua  = require('express-mobile-redirect');
 let app = express();
 let server = require('http').createServer(app).listen(port, function() {
   console.log('server is listening at port: ' + port);
@@ -32,7 +33,7 @@ app.use(express.static('public'));
 let io = require('socket.io').listen(server);
 
 
-var outputs = io.of('/output');
+var outputs = io.of('/');
 
 // what do outputs do
 // nothing but print logs

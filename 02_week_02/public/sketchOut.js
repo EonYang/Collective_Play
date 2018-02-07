@@ -1,5 +1,5 @@
 // Open and connect output socket
-let socket = io('/output');
+let socket = io('/');
 let localDogs = {};
 let initialY;
 
