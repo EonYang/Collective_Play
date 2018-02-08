@@ -3,8 +3,6 @@ let socket = io('/input');
 
 let myName;
 let userStartTime;
-let userCurrentRotation = [];
-let zenDuration;
 
 // Listen for confirmation of connection
 socket.on('connect', function() {
@@ -15,11 +13,19 @@ socket.on('connect', function() {
 setInterval('drawWithoutP5()', 1000);
 
 function drawWithoutP5() {
-  let nowtime = new Date().getTime();
   showDuration();
 }
 
+function setup(){
+
+}
+
+function draw() {
+
+}
+
 function deviceMoved() {
+  console.log('deviceMoved event just got called');
   userStartTime = new Date().getTime();
   socket.emit('zenInterupted', userStartTime);
 }
