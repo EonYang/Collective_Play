@@ -66,6 +66,7 @@ function draw() {
   translate(width / 2, height / 2);
   image(bgImg, 0, 0, height * 1.77, height);
   pop();
+
   push();
   translate(0,0);
   noStroke();
@@ -88,7 +89,7 @@ class Dog {
     this.name = name;
     this.startTime = startTime;
     this.duration = now - this.startTime;
-    console.log(this.duration);
+
     this.x = x;
     this.float = 0;
     this.speed = 0.2;
@@ -101,27 +102,26 @@ class Dog {
   }
 
   show() {
-    // Yspeed = 0.1;
+
     let now = new Date().getTime();
     this.duration = now - this.startTime;
-    // destinationY += 20 in every 20 seconds
+    // destinationY + 20 in every 20 seconds
     if (frameCount % 600 == 0 && this.destinationY >= 100) {
       this.destinationY -= 20;
     }
-    //if failed, move down to initialY
+    //if failed, move down to initial Y
     if (this.duration <= 5000 && this.y <= initialY) {
       this.destinationY = initialY;
-      // Yspeed = 5;
       this.y += 0.5;
     }
 
-    // if lower than destinationY, move up every frame
+    // if current y is lower than destinationY, move up every frame
     if (this.y > this.destinationY ) {
       this.y -= Yspeed;
     }
 
-    // if this.y - 20 >= initialY, means it;s floating
-    if (this.y + 20 <= initialY) {
+    // if this.y - 20 >= initialY, means it's floating
+    if (this.y + 19 < initialY) {
       if (this.float >= 0) {
         this.speed -= gravity;
       }
@@ -133,9 +133,11 @@ class Dog {
       this.float += this.speed;
     }
 
-    if (frameCount % 30 == 0) {
-      console.log(this.y);
-    }
+    // if (frameCount % 30 == 0) {
+    //   console.log(this.y);
+    // }
+
+    // draw it
     push();
     translate(this.x, this.y);
     if (this.duration >= 100000){
