@@ -110,7 +110,7 @@ class Dog {
       this.destinationY -= 20;
     }
     //if failed, move down to initial Y
-    if (this.duration <= 5000 && this.y <= initialY) {
+    if (this.duration <= 5000 && this.y < initialY) {
       this.destinationY = initialY;
       this.y += 0.5;
     }
